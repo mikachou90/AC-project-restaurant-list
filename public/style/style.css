@@ -1,3 +1,7 @@
+* {
+  text-decoration: none;
+}
+
 header {
   overflow: hidden;
 }
@@ -102,4 +106,10 @@ header {
     height: auto;
   }
 
+}
+
+span .bestShop{
+font-size: 16px;
+font-weight: 700;
+color: red;
 }

@@ -30,6 +30,7 @@ app.get("/search", (req, res) => {
   }
   const keywords = req.query.keywords.trim().toLocaleLowerCase();
 
+  //設定查詢店名、餐廳分類、地址
   const filterRestaurant = restaurantData.results.filter(
     function (restaurant) {
       return (
@@ -40,11 +41,13 @@ app.get("/search", (req, res) => {
     }
   );
 
+  //以評分來排序查詢出來的店家
   const sortRestaurant = filterRestaurant.sort(function (restaurant, nextRestaurant) {
     return nextRestaurant.rating - restaurant.rating;
   });
 
-  const mappedRestaurant = sortRestaurant.map(function (restaurant,index) {
+  const mappedRestaurant = sortRestaurant.map(function (restaurant, index) {
+     console.log('best', restaurant)
     if (index === 0) { // This is the first restaurant, so it's the best
       
       restaurant.theBest = true;
@@ -54,6 +57,7 @@ app.get("/search", (req, res) => {
     } else {
       return restaurant;
     }
+
   })
 
   res.render("index", { restauranList: mappedRestaurant, keyword: keywords });
